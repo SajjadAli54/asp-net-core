@@ -6,10 +6,15 @@ namespace StudentPortal.Web.Data
     public class ApplicationDbContext: DbContext
     {
         public DbSet<Student> Students { get; set; }
-        public ApplicationDbContext(DbContextOptions options): 
-               base(options)
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+            var connectionString = configuration.GetConnectionString("StudentPortal");
+            optionsBuilder.UseSqlServer(connectionString);
         }
     }
 }
