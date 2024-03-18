@@ -1,6 +1,6 @@
 ﻿namespace MyStore.Model
 {
-    public class ClientInfo
+    public class Client
     {
         public int Id { get; set; }
         public string Name { get; set; }

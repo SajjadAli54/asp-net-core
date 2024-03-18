@@ -6,7 +6,7 @@ namespace MyStore.Pages.Clients
     public class IndexModel : PageModel
     {
         public MyDatabase database;
-        public List<ClientInfo> listClients;
+        public List<Client> listClients;
 
         public IndexModel(MyDatabase database)
         {

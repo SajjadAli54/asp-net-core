@@ -8,7 +8,7 @@ namespace MyStore.Pages.Clients
     public class CreateModel : PageModel
     {
         public MyDatabase database;
-        public ClientInfo clientInfo = new ClientInfo();
+        public Client clientInfo = new Client();
         public string errorMessage = "";
 
         public CreateModel(MyDatabase database)
@@ -35,8 +35,15 @@ namespace MyStore.Pages.Clients
                 return;
             }
 
-            database.Insert(clientInfo);
-            Response.Redirect("/Clients/");
+            try {
+                database.Insert(clientInfo);
+                Response.Redirect("/Clients/");
+            }
+            catch(Exception ex)
+            {
+                errorMessage = ex.Message;
+            }
+
 
         }
     }

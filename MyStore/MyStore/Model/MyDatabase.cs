@@ -10,9 +10,9 @@ namespace MyStore.Model
         private string tableName = "clients";
 
 
-        public ClientInfo Get(int id)
+        public Client Get(int id)
         {
-            var client =  new ClientInfo();
+            var client =  new Client();
             using(SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -30,9 +30,9 @@ namespace MyStore.Model
             return client;
         }
 
-        public List<ClientInfo> GetAll()
+        public List<Client> GetAll()
         {
-            var list = new List<ClientInfo>();
+            var list = new List<Client>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -43,17 +43,17 @@ namespace MyStore.Model
                     {
                         while(reader.Read())
                         {
-                            var client = new ClientInfo();
+                            var client = new Client();
                             setClient(client, reader);
                             list.Add(client);
                         } 
                     }
                 }
             }
-            var reversed = list.Reverse<ClientInfo>().ToList<ClientInfo>();
+            var reversed = list.Reverse<Client>().ToList<Client>();
             return reversed;
         }
-        public void Insert(ClientInfo client)
+        public void Insert(Client client)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -69,7 +69,7 @@ namespace MyStore.Model
 
         }
 
-        public void Update(int id, ClientInfo client) {
+        public void Update(int id, Client client) {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -93,7 +93,7 @@ namespace MyStore.Model
             }
         }
 
-        private void setClient(ClientInfo client, SqlDataReader reader) {
+        private void setClient(Client client, SqlDataReader reader) {
             client.Id = reader.GetInt32(0);
             client.Name = reader.GetString(1);
             client.Email = reader.GetString(2);

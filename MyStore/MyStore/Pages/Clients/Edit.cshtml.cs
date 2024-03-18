@@ -7,7 +7,7 @@ namespace MyStore.Pages.Clients
     {
         public MyDatabase database;
         public string errorMessage = "";
-        public ClientInfo clientInfo = new ClientInfo();
+        public Client clientInfo = new Client();
 
         public EditModel(MyDatabase database)
         {
